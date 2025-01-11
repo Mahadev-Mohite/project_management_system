@@ -72,7 +72,7 @@ exports.getByEmail = async (email) => {
     const [user] = await db.query(`SELECT * FROM users WHERE email =?`, [
       email,
     ]);
-    console.log(user);
+    // console.log(user);
     return user.length > 0 ? user[0] : null;
   } catch (err) {
     console.error("Error fetching user", err.message);
