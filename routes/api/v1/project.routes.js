@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authenticate = require("../../../middalwares/auth.middalware");
-const projectController = require("../../../controllers/project.controllers");
+const projectController = require("../../../controllers/project.controller");
 
 router.post("/create", authenticate, projectController.create);
 router.get("/getall", authenticate, projectController.getAllProject);

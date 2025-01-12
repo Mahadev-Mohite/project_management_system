@@ -36,13 +36,20 @@ exports.createUser = async (req, res) => {
 };
 // get user by Id
 exports.fetchUserById = async (req, res) => {
-  const { id } = req.params;
-
+  const id = Number(req.params.id);
+  // console.log(typeof id);
+  const userId = req.user.id;
   if (!id) {
     return res.status(400).json({
       message: "User ID is required!",
     });
   }
+  if (userId !== id) {
+    return res.status(400).json({
+      message: "You are not authorised to delete this user",
+    });
+  }
+
   try {
     const user = await User.getUserById(id);
 
@@ -68,10 +75,16 @@ exports.fetchUserById = async (req, res) => {
 // delete
 exports.deleteUserById = async (req, res) => {
   const { id } = req.params;
-
+  console.log(typeof id);
+  const userId = req.user.id;
   if (!id) {
     return res.status(400).json({
       message: "User ID is required!",
+    });
+  }
+  if (userId !== id) {
+    return res.status(400).json({
+      message: "You are not authorised to delete this user",
     });
   }
   try {
@@ -96,12 +109,18 @@ exports.deleteUserById = async (req, res) => {
 };
 // update user
 exports.updateUser = async (req, res) => {
-  const id = req.params.id;
+  const id = Number(req.params.id);
   const { username, password } = req.body;
-  console.log(req.body);
+
+  const userId = req.user.id;
 
   if (!id) {
     return res.status(400).json({ message: "User Id is required" });
+  }
+  if (userId !== id) {
+    return res.status(400).json({
+      message: "You are not authorised to update the this user",
+    });
   }
 
   try {

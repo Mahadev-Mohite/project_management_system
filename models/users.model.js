@@ -17,7 +17,10 @@ exports.createUser = async (userData) => {
 // getuser by id
 exports.getUserById = async (id) => {
   try {
-    const [user] = await db.query(`SELECT username,email FROM users`, [id]);
+    const [user] = await db.query(
+      `SELECT username,email FROM users WHERE id = ?`,
+      [id]
+    );
 
     if (user.length === 0) {
       return null;
