@@ -186,3 +186,26 @@ exports.login = async (req, res) => {
     return res.status(500).json({ message: " An Error Occured While login " });
   }
 };
+
+// getAll user
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.getAllUsers();
+
+    if (!users || users.length === 0) {
+      return res.status(404).json({
+        message: "No users found",
+      });
+    }
+    return res.status(200).json({
+      message: "Users fetched successfully",
+      users,
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+    return res.status(500).json({
+      message: "An error occurred while fetching users",
+      error: error.message,
+    });
+  }
+};
