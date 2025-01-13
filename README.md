@@ -1,4 +1,10 @@
 # FOR LIVE API ACCESS READ THE CURL FOLDER'S FILES. THERE IS GIVEN END TO END DESCRIPTION OF EVERY API
+POST ~ https://project-management-system-1-wk08.onrender.com/api/v1/user/create
+{
+    "username":"sam",
+    "email":"sam@123",
+    "password":"123456"
+}
 
 # project_management_system
 1. To get started with this project, clone the repository and install the necessary dependencies.
