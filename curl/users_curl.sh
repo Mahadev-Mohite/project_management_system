@@ -40,10 +40,17 @@ echo -e "\n"
 
 # Login a user
 echo "Logging in a user..."
-curl -X POST "$BASE_URL/login" \
+curl -X POST "$BASE_URL/getall" \
   -H "Content-Type: application/json" \
   -d '{
         "email": "johndoe@example.com",
         "password": "strongpassword123"
       }'
+echo -e "\n"
+
+# getAll User 
+echo "getAll Users"
+curl -X GET "$BASE_URL/login" \
+  -H "Authorization: Bearer $TOKEN" \
+  
 echo -e "\n"
