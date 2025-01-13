@@ -85,7 +85,7 @@ exports.getByEmail = async (email) => {
 
 exports.getAllUsers = async () => {
   try {
-    const [users] = await db.query(`SELECT id, username, email FROM useres`);
+    const [users] = await db.query(`SELECT id, username, email FROM users`);
     return users;
   } catch (error) {
     throw new Error("Error fetching users from the database: " + error.message);
